@@ -43,6 +43,12 @@ print_title <- function(title) {
 
 
 ```{r data_import}
+
+print_title("FUNCTIONAL CONNECTOME MATRICES DATA")
+fMRI_data <- read_csv("TRAIN/TRAIN_FUNCTIONAL_CONNECTOME_MATRICES.csv") |> as.data.frame()
+#summary(fMRI_data)
+#glimpse(fMRI_data)
+
 print_title("QUANTITATIVE DATA")
 quantitative_data <- read_excel("TRAIN/TRAIN_QUANTITATIVE_METADATA.xlsx")
 summary(quantitative_data)

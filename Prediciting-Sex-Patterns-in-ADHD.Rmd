@@ -42,7 +42,7 @@ print_title <- function(title) {
 ```
 
 
-```{r dada_import}
+```{r data_import}
 print_title("QUANTITATIVE DATA")
 quantitative_data <- read_excel("TRAIN/TRAIN_QUANTITATIVE_METADATA.xlsx")
 summary(quantitative_data)

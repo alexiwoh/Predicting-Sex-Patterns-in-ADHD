@@ -9,13 +9,13 @@ output: html_document
 
 ```{r setup, echo = FALSE}
 knitr::opts_chunk$set(error = TRUE)
-install.packages("ggplot2")
-install.packages("dplyr")
-install.packages("lubridate")
-install.packages("recipes")
-install.packages("rsample")
-install.packages("readr")
-install.packages("readxl")
+# install.packages("ggplot2")
+# install.packages("dplyr")
+# install.packages("lubridate")
+# install.packages("recipes")
+# install.packages("rsample")
+# install.packages("readr")
+# install.packages("readxl")
 library(dplyr)
 library(lubridate)
 library(stringr)
@@ -35,15 +35,24 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
+```{r helper functions}
+print_title <- function(title) {
+  cat("\n---", title, "\n\n")
+}
+```
+
+
 ```{r dada_import}
+print_title("QUANTITATIVE DATA")
 quantitative_data <- read_excel("TRAIN/TRAIN_QUANTITATIVE_METADATA.xlsx")
 summary(quantitative_data)
 glimpse(quantitative_data)
-print("")
+
+print_title("CATEGORICAL DATA")
 categorical_data <- read_excel("TRAIN/TRAIN_CATEGORICAL_METADATA.xlsx")
+categorical_data[] <- lapply(categorical_data, as.factor) # Make categorical data factors.
 summary(categorical_data)
 glimpse(categorical_data)
-print("")
 ```
 
 ## Including Plots

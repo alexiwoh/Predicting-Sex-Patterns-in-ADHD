@@ -53,6 +53,12 @@ categorical_data <- read_excel("TRAIN/TRAIN_CATEGORICAL_METADATA.xlsx")
 categorical_data[] <- lapply(categorical_data, as.factor) # Make categorical data factors.
 summary(categorical_data)
 glimpse(categorical_data)
+
+print_title("TARGETS DATA")
+targets_data <- read_excel("TRAIN/TRAINING_SOLUTIONS.xlsx")
+targets_data[] <- lapply(targets_data, as.factor) # Make categorical data factors.
+summary(targets_data)
+glimpse(targets_data)
 ```
 
 ## Including Plots

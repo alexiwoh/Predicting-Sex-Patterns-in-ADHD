@@ -356,10 +356,69 @@ display: none;
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#notes-on-the-correlation-between-features" id="toc-notes-on-the-correlation-between-features"><span class="toc-section-number">0.0.1</span> Notes on the correlation between
+features</a></li>
+<li><a href="#install-required-packages" id="toc-install-required-packages"><span class="toc-section-number">0.0.2</span> Install required
+packages</a></li>
+<li><a href="#load-necessary-libraries" id="toc-load-necessary-libraries"><span class="toc-section-number">0.0.3</span> Load necessary
+libraries</a></li>
+<li><a href="#target-variables" id="toc-target-variables"><span class="toc-section-number">0.0.4</span> Target Variables</a></li>
+<li><a href="#feature-variables" id="toc-feature-variables"><span class="toc-section-number">0.0.5</span> Feature Variables</a></li>
+<li><a href="#questionnaire-features" id="toc-questionnaire-features"><span class="toc-section-number">1</span> Questionnaire Features</a>
+<ul>
+<li><a href="#strength-and-difficulties-questionnaire-sdq" id="toc-strength-and-difficulties-questionnaire-sdq"><span class="toc-section-number">1.0.1</span> Strength and Difficulties
+Questionnaire (SDQ)</a></li>
+<li><a href="#alabama-parenting-questionnaire-apq" id="toc-alabama-parenting-questionnaire-apq"><span class="toc-section-number">1.0.2</span> Alabama Parenting Questionnaire
+(APQ)</a></li>
+<li><a href="#other-clinical-measures" id="toc-other-clinical-measures"><span class="toc-section-number">1.1</span> Other Clinical Measures</a></li>
+<li><a href="#demographic-features" id="toc-demographic-features"><span class="toc-section-number">1.2</span> Demographic Features</a></li>
+<li><a href="#brain-connectivity-data-connectome-features" id="toc-brain-connectivity-data-connectome-features"><span class="toc-section-number">1.3</span> Brain Connectivity Data
+(Connectome Features)</a></li>
+<li><a href="#data-patterns-and-interpretation" id="toc-data-patterns-and-interpretation"><span class="toc-section-number">1.4</span> Data Patterns and
+Interpretation</a>
+<ul>
+<li><a href="#sdq-score-interpretation-examples" id="toc-sdq-score-interpretation-examples"><span class="toc-section-number">1.4.1</span> SDQ Score Interpretation
+Examples:</a></li>
+<li><a href="#connectome-interpretation-examples" id="toc-connectome-interpretation-examples"><span class="toc-section-number">1.4.2</span> Connectome Interpretation
+Examples:</a></li>
+<li><a href="#parenting-and-adhd-connection" id="toc-parenting-and-adhd-connection"><span class="toc-section-number">1.4.3</span> Parenting and ADHD
+Connection:</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#load-all-the-data-from-the-input-files" id="toc-load-all-the-data-from-the-input-files"><span class="toc-section-number">2</span> Load all the data from the input
+files</a>
+<ul>
+<li><a href="#basic-descriptive-statistics" id="toc-basic-descriptive-statistics"><span class="toc-section-number">2.1</span> BASIC DESCRIPTIVE STATISTICS</a>
+<ul>
+<li><a href="#training-dataset" id="toc-training-dataset"><span class="toc-section-number">2.1.1</span> TRAINING DATASET</a></li>
+<li><a href="#testing-dataset" id="toc-testing-dataset"><span class="toc-section-number">2.1.2</span> TESTING DATASET</a></li>
+<li><a href="#dataset-overview" id="toc-dataset-overview"><span class="toc-section-number">2.1.3</span> DATASET OVERVIEW</a></li>
+<li><a href="#dropping-unnecessary-columns" id="toc-dropping-unnecessary-columns"><span class="toc-section-number">2.1.4</span> Dropping Unnecessary
+Columns</a></li>
+</ul></li>
+<li><a href="#handling-missing-values" id="toc-handling-missing-values"><span class="toc-section-number">2.2</span> HANDLING MISSING VALUES</a></li>
+<li><a href="#imputing-missing-values-for-training-data" id="toc-imputing-missing-values-for-training-data"><span class="toc-section-number">2.3</span> IMPUTING MISSING VALUES FOR
+TRAINING DATA</a></li>
+<li><a href="#imputing-missing-values-for-test-data" id="toc-imputing-missing-values-for-test-data"><span class="toc-section-number">2.4</span> IMPUTING MISSING VALUES FOR TEST
+DATA</a></li>
+</ul></li>
+</ul>
+</div>
 
-<div id="notes-on-the-correlation-between-features" class="section level3">
-<h3>Notes on the correlation between features</h3>
-<pre class="r"><code># - I think we can drop the following columns: 
+<div id="notes-on-the-correlation-between-features" class="section level3" number="0.0.1">
+<h3><span class="header-section-number">0.0.1</span> Notes on the
+correlation between features</h3>
+<pre class="r"><code>knitr::opts_chunk$set(
+    error = TRUE,
+    message = FALSE,
+    warning = FALSE, 
+    out.width = 60,
+    tidy.opts=list(width.cutoff=60),
+    tidy=TRUE
+) 
+# - I think we can drop the following columns: 
 # (&quot;Basic_Demos_Study_Site&quot;, &quot;Basic_Demos_Study_Site&quot;, &quot;MRI_Track_Scan_Location&quot;, &quot;Basic_Demos_Enroll_Year&quot;)
 
 # - Regarding SDQ: There is correlation between SDQ Scores and ADHD 
@@ -380,15 +439,10 @@ display: none;
 # - Brain connectivity is basically the correlation between the metrics 
 # (they represent the correlation between two brain regions).</code></pre>
 </div>
-<div id="install-required-packages" class="section level3">
-<h3>Install required packages</h3>
-<pre class="r"><code>knitr::opts_chunk$set(
-    error = TRUE,
-    message = FALSE,
-    warning = FALSE
-) 
-
-# Install required packages
+<div id="install-required-packages" class="section level3" number="0.0.2">
+<h3><span class="header-section-number">0.0.2</span> Install required
+packages</h3>
+<pre class="r"><code># Install required packages
 install.packages(c(
   &quot;dplyr&quot;,        # Data manipulation
   &quot;tidyr&quot;,        # Data tidying and reshaping
@@ -420,11 +474,14 @@ install.packages(c(
   &quot;corrplot&quot;,     # Correlation matrix visualization
   &quot;factoextra&quot;,   # PCA and clustering visualization
   
-  &quot;stats&quot;         # Base R statistical functions
+  &quot;stats&quot;,         # Base R statistical functions
+  
+  &quot;tinytex&quot;       # For LaTeX rendering to PDF
 ))</code></pre>
 </div>
-<div id="load-necessary-libraries" class="section level3">
-<h3>Load necessary libraries</h3>
+<div id="load-necessary-libraries" class="section level3" number="0.0.3">
+<h3><span class="header-section-number">0.0.3</span> Load necessary
+libraries</h3>
 <pre class="r"><code># Data Manipulation &amp; Handling
 library(dplyr)         # Data wrangling and manipulation
 library(tidyr)         # Data tidying and reshaping
@@ -468,8 +525,9 @@ library(stats)         # Base R statistical functions
 # Suppress warnings
 options(warn=-1)</code></pre>
 </div>
-<div id="target-variables" class="section level3">
-<h3>Target Variables</h3>
+<div id="target-variables" class="section level3" number="0.0.4">
+<h3><span class="header-section-number">0.0.4</span> Target
+Variables</h3>
 <ol style="list-style-type: decimal">
 <li><strong>Target Variables</strong>
 <ul>
@@ -478,8 +536,9 @@ options(warn=-1)</code></pre>
 </ul></li>
 </ol>
 </div>
-<div id="feature-variables" class="section level3">
-<h3>Feature Variables</h3>
+<div id="feature-variables" class="section level3" number="0.0.5">
+<h3><span class="header-section-number">0.0.5</span> Feature
+Variables</h3>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Brain Connectivity Data</strong>
 <ul>
@@ -511,10 +570,12 @@ peer problems</li>
 </ul></li>
 </ol>
 </div>
-<div id="questionnaire-features" class="section level1">
-<h1>Questionnaire Features</h1>
-<div id="strength-and-difficulties-questionnaire-sdq" class="section level3">
-<h3>Strength and Difficulties Questionnaire (SDQ)</h3>
+<div id="questionnaire-features" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Questionnaire
+Features</h1>
+<div id="strength-and-difficulties-questionnaire-sdq" class="section level3" number="1.0.1">
+<h3><span class="header-section-number">1.0.1</span> Strength and
+Difficulties Questionnaire (SDQ)</h3>
 <table>
 <colgroup>
 <col width="19%" />
@@ -608,8 +669,9 @@ prosocial skills.</td>
 </tbody>
 </table>
 </div>
-<div id="alabama-parenting-questionnaire-apq" class="section level3">
-<h3>Alabama Parenting Questionnaire (APQ)</h3>
+<div id="alabama-parenting-questionnaire-apq" class="section level3" number="1.0.2">
+<h3><span class="header-section-number">1.0.2</span> Alabama Parenting
+Questionnaire (APQ)</h3>
 <table>
 <colgroup>
 <col width="19%" />
@@ -679,8 +741,9 @@ positive reinforcement.</td>
 </tbody>
 </table>
 </div>
-<div id="other-clinical-measures" class="section level2">
-<h2>Other Clinical Measures</h2>
+<div id="other-clinical-measures" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Other Clinical
+Measures</h2>
 <table>
 <colgroup>
 <col width="19%" />
@@ -718,8 +781,9 @@ color vision.</td>
 </tbody>
 </table>
 </div>
-<div id="demographic-features" class="section level2">
-<h2>Demographic Features</h2>
+<div id="demographic-features" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Demographic
+Features</h2>
 <table>
 <colgroup>
 <col width="19%" />
@@ -777,8 +841,9 @@ Latino).</td>
 </tbody>
 </table>
 </div>
-<div id="brain-connectivity-data-connectome-features" class="section level2">
-<h2>Brain Connectivity Data (Connectome Features)</h2>
+<div id="brain-connectivity-data-connectome-features" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Brain Connectivity
+Data (Connectome Features)</h2>
 <table>
 <colgroup>
 <col width="19%" />
@@ -840,10 +905,12 @@ indicates moderate negative correlation.</td>
 </tbody>
 </table>
 </div>
-<div id="data-patterns-and-interpretation" class="section level2">
-<h2>Data Patterns and Interpretation</h2>
-<div id="sdq-score-interpretation-examples" class="section level3">
-<h3>SDQ Score Interpretation Examples:</h3>
+<div id="data-patterns-and-interpretation" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Data Patterns and
+Interpretation</h2>
+<div id="sdq-score-interpretation-examples" class="section level3" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> SDQ Score
+Interpretation Examples:</h3>
 <ul>
 <li>A child with <code>SDQ_SDQ_Hyperactivity = 8</code>,
 <code>SDQ_SDQ_Conduct_Problems = 5</code> likely shows significant ADHD
@@ -853,8 +920,9 @@ symptoms.</li>
 social isolation.</li>
 </ul>
 </div>
-<div id="connectome-interpretation-examples" class="section level3">
-<h3>Connectome Interpretation Examples:</h3>
+<div id="connectome-interpretation-examples" class="section level3" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Connectome
+Interpretation Examples:</h3>
 <ul>
 <li>Strong positive correlation (0.7) between frontal and parietal
 regions might indicate good executive function.</li>
@@ -862,8 +930,9 @@ regions might indicate good executive function.</li>
 could indicate emotional regulation difficulties.</li>
 </ul>
 </div>
-<div id="parenting-and-adhd-connection" class="section level3">
-<h3>Parenting and ADHD Connection:</h3>
+<div id="parenting-and-adhd-connection" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Parenting and ADHD
+Connection:</h3>
 <ul>
 <li>High <code>APQ_P_APQ_P_ID (20)</code> combined with high
 <code>SDQ_SDQ_Hyperactivity (9)</code> might suggest inconsistent
@@ -906,8 +975,9 @@ categorical_columns &lt;- list(
 </div>
 </div>
 </div>
-<div id="load-all-the-data-from-the-input-files" class="section level1">
-<h1>Load all the data from the input files</h1>
+<div id="load-all-the-data-from-the-input-files" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Load all the data from
+the input files</h1>
 <p>Training Dataset : Merge the quantitative, categorical metadata files
 &amp; solution data</p>
 <pre class="r"><code>print_title &lt;- function(title) {
@@ -1110,24 +1180,28 @@ cat(&quot;Non-Connectome Features: &quot;, length(non_connectome_features), &quo
 <pre><code>## Non-Connectome Features:  28</code></pre>
 <pre class="r"><code>cat(&quot;Connectome Features: &quot;, length(connectome_features), &quot;\n&quot;)</code></pre>
 <pre><code>## Connectome Features:  19900</code></pre>
-<div id="basic-descriptive-statistics" class="section level2">
-<h2>BASIC DESCRIPTIVE STATISTICS</h2>
-<div id="training-dataset" class="section level3">
-<h3>TRAINING DATASET</h3>
+<div id="basic-descriptive-statistics" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> BASIC DESCRIPTIVE
+STATISTICS</h2>
+<div id="training-dataset" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> TRAINING
+DATASET</h3>
 <pre class="r"><code>cat(&quot;Number of rows: &quot;, nrow(train_data), &quot;\n&quot;)</code></pre>
 <pre><code>## Number of rows:  1213</code></pre>
 <pre class="r"><code>cat(&quot;Number of columns: &quot;, ncol(train_data), &quot;\n&quot;)</code></pre>
 <pre><code>## Number of columns:  19930</code></pre>
 </div>
-<div id="testing-dataset" class="section level3">
-<h3>TESTING DATASET</h3>
+<div id="testing-dataset" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> TESTING
+DATASET</h3>
 <pre class="r"><code>cat(&quot;Number of rows: &quot;, nrow(test_data), &quot;\n&quot;)</code></pre>
 <pre><code>## Number of rows:  304</code></pre>
 <pre class="r"><code>cat(&quot;Number of columns: &quot;, ncol(test_data), &quot;\n&quot;)</code></pre>
 <pre><code>## Number of columns:  19928</code></pre>
 </div>
-<div id="dataset-overview" class="section level3">
-<h3>DATASET OVERVIEW</h3>
+<div id="dataset-overview" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> DATASET
+OVERVIEW</h3>
 <pre class="r"><code>cat(&quot;\nDataset Overview:\n&quot;)</code></pre>
 <pre><code>## 
 ## Dataset Overview:</code></pre>
@@ -1140,8 +1214,9 @@ cat(&quot;Non-Connectome Features: &quot;, length(non_connectome_features), &quo
 <pre class="r"><code>cat(&quot;Number of brain connectivity features: &quot;, length(connectome_features), &quot;\n&quot;)</code></pre>
 <pre><code>## Number of brain connectivity features:  19900</code></pre>
 </div>
-<div id="dropping-unnecessary-columns" class="section level3">
-<h3>Dropping Unnecessary Columns</h3>
+<div id="dropping-unnecessary-columns" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Dropping
+Unnecessary Columns</h3>
 <pre class="r"><code>drop_cols &lt;- c(&quot;Basic_Demos_Study_Site&quot;, &quot;Basic_Demos_Study_Site&quot;, &quot;MRI_Track_Scan_Location&quot;, &quot;Basic_Demos_Enroll_Year&quot;)
 train_data &lt;- train_data[, !(colnames(train_data) %in% drop_cols)]</code></pre>
 <pre class="r"><code>head(train_data)</code></pre>
@@ -1163,8 +1238,9 @@ train_data &lt;- train_data[, !(colnames(train_data) %in% drop_cols)]</code></pr
 ## #   SDQ_SDQ_Prosocial &lt;dbl&gt;, MRI_Track_Age_at_Scan &lt;chr&gt;, …</code></pre>
 </div>
 </div>
-<div id="handling-missing-values" class="section level2">
-<h2>HANDLING MISSING VALUES</h2>
+<div id="handling-missing-values" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> HANDLING MISSING
+VALUES</h2>
 <pre class="r"><code># Check for missing values in the training data
 missing_values &lt;- colSums(is.na(train_data))
 
@@ -1204,8 +1280,9 @@ if (nrow(missing_features) &gt; 0) {
 ## MRI_Track_Age_at_Scan                       360 29.6784831
 ## PreInt_Demos_Fam_Child_Ethnicity             11  0.9068425</code></pre>
 </div>
-<div id="imputing-missing-values-for-training-data" class="section level2">
-<h2>IMPUTING MISSING VALUES FOR TRAINING DATA</h2>
+<div id="imputing-missing-values-for-training-data" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> IMPUTING MISSING
+VALUES FOR TRAINING DATA</h2>
 <pre class="r"><code># Ensure missing values exist (including empty strings for categorical)
 train_missing_values &lt;- colSums(is.na(train_data) | train_data == &quot;&quot;, na.rm = TRUE)
 columns_with_missing_train &lt;- names(train_missing_values)[train_missing_values &gt; 0]
@@ -1259,8 +1336,9 @@ cat(&quot;\nMissing values after imputation in training data:&quot;, train_missi
 <pre><code>## 
 ## All missing values in training data have been replaced successfully!</code></pre>
 </div>
-<div id="imputing-missing-values-for-test-data" class="section level2">
-<h2>IMPUTING MISSING VALUES FOR TEST DATA</h2>
+<div id="imputing-missing-values-for-test-data" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> IMPUTING MISSING
+VALUES FOR TEST DATA</h2>
 <pre class="r"><code># Ensure missing values exist (including empty strings for categorical)
 test_missing_values &lt;- colSums(is.na(test_data) | test_data == &quot;&quot;, na.rm = TRUE)
 columns_with_missing_test &lt;- names(test_missing_values)[test_missing_values &gt; 0]

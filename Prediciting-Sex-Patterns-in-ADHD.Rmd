@@ -2,12 +2,23 @@
 title: "Predicting-Sex-Patterns-in-ADHD"
 author: "Alexander Iwoh and Youssef Megahed"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  html_document:
+    number_sections: true
+    toc: true
 ---
 
 ### Notes on the correlation between features
 
 ```{r notes}
+knitr::opts_chunk$set(
+	error = TRUE,
+	message = FALSE,
+	warning = FALSE, 
+	out.width = 60,
+	tidy.opts=list(width.cutoff=60),
+	tidy=TRUE
+) 
 # - I think we can drop the following columns: 
 # ("Basic_Demos_Study_Site", "Basic_Demos_Study_Site", "MRI_Track_Scan_Location", "Basic_Demos_Enroll_Year")
 
@@ -33,11 +44,6 @@ output: html_document
 ### Install required packages
 
 ```{r setup packages, echo = TRUE, message = FALSE, warning = FALSE, eval = interactive()}
-knitr::opts_chunk$set(
-	error = TRUE,
-	message = FALSE,
-	warning = FALSE
-) 
 
 # Install required packages
 install.packages(c(
@@ -71,7 +77,9 @@ install.packages(c(
   "corrplot",     # Correlation matrix visualization
   "factoextra",   # PCA and clustering visualization
   
-  "stats"         # Base R statistical functions
+  "stats",         # Base R statistical functions
+  
+  "tinytex"       # For LaTeX rendering to PDF
 ))
 
 ```
